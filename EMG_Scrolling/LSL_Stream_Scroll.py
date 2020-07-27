@@ -21,7 +21,7 @@ while True:
 	curr_time = int(round(time.time() * 1000)) # get current time in milliseconds
 
 
-	if (((sample[1] == flex_thres) or (sample[0] == flex_thres))): # if an EMG peak is detected from any of the arms 
+	if (((sample[1] >= flex_thres) or (sample[0] >= flex_thres))): # if an EMG peak is detected from any of the arms 
 
 		prev_time = int(round(time.time() * 1000)) # update time 
 		
