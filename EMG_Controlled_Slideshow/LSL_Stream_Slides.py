@@ -10,9 +10,10 @@ streams = resolve_stream('type', 'EMG')
 inlet = StreamInlet(streams[0])
 print("EMG stream found!")
 
-# initialize time threshold and variables for storing time 
-thres = 2000
+# initialize thresholds and variables for storing time 
+time_thres = 2000
 prev_time = 0
+blink_thres = 0.95
 
 while True:
 
@@ -20,7 +21,7 @@ while True:
 
 	curr_time = int(round(time.time() * 1000)) # get current time in milliseconds
 
-	if ((sample[0] >=  1.0) & (curr_time - thres > prev_time)):  # if a blink is detected and enough time has gone by since the last blinking, press space
+	if ((sample[0] >=  blink_thres) & (curr_time - time_thres > prev_time)):  # if a blink is detected and enough time has gone by since the last blinking, press space
 		prev_time = int(round(time.time() * 1000)) # update time 
 		pyautogui.press('space')
 		
