@@ -10,9 +10,9 @@ streams = resolve_stream('type', 'EMG')
 inlet = StreamInlet(streams[0])
 print("EMG stream found!")
 
-# initialize variables for storing time and threshold
-thres = 10
+# initialize thresholds and variables for storing time 
 prev_time = 0
+flex_thres = 1.0
 
 while True:
 
@@ -21,7 +21,7 @@ while True:
 	curr_time = int(round(time.time() * 1000)) # get current time in milliseconds
 
 
-	if (((sample[1] == 1.0) or (sample[0] == 1.0))): # if an EMG peak is detected from any of the arms 
+	if (((sample[1] == flex_thres) or (sample[0] == flex_thres))): # if an EMG peak is detected from any of the arms 
 
 		prev_time = int(round(time.time() * 1000)) # update time 
 		
