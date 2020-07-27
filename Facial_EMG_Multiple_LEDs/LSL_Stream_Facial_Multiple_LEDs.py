@@ -15,8 +15,9 @@ inlet = StreamInlet(streams[0])
 print("EMG stream found!")
 
 # initialize time threshold and variables for storing time
-thres = 500
+time_thres = 500
 prev_time = 0
+flex_thres = 0.7
 
 while True:
 
@@ -25,15 +26,15 @@ while True:
 	curr_time = int(round(time.time() * 1000)) # get current time in milliseconds
 
 
-	if ((samples[0] >=  0.7) & (curr_time - thres > prev_time)): # if an EMG spike is detected from the cheek muscles send 'G'
+	if ((samples[0] >=  flex_thres) & (curr_time - time_thres > prev_time)): # if an EMG spike is detected from the cheek muscles send 'G'
 		prev_time = int(round(time.time() * 1000)) # update time
 		ser.write(b'Y') 
 
 
-	elif((samples[1] >=  0.7) & (curr_time - thres > prev_time)): # if an EMG spike is detected from the eyebrow muscles send 'R'
+	elif((samples[1] >=  flex_thres) & (curr_time - time_thres > prev_time)): # if an EMG spike is detected from the eyebrow muscles send 'R'
 		prev_time = int(round(time.time() * 1000)) # update time
 		ser.write(b'R')
 
-	elif(curr_time - thres > prev_time): # if no spike is detected send 'B' 
+	elif(curr_time - time_thres > prev_time): # if no spike is detected send 'B' 
 		prev_time = int(round(time.time() * 1000)) # update time
 		ser.write(b'B')
