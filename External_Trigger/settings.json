@@ -1,0 +1,13 @@
+{
+  "image_base_path": "./Images/",
+  "image_types": ["Kitten", "Puppy"],
+  "video_time": 3000,
+  "trigger_interval": 100,
+  "flick_times": 5,
+  "fps": 20,
+  "screen_size": [1920, 1080],
+  "time_range_per_image": 0.2,
+  "video_output": "video.mp4",
+  "label_output": "labels.txt",
+  "trigger_position": [0, 830, 100, 930]
+}
