@@ -1,12 +1,12 @@
 """Code modified from the example program to show how to read a multi-channel time series from LSL at https://github.com/OpenBCI/OpenBCI_GUI/blob/master/Networking-Test-Kit/LSL/lslStreamTest.py."""
 
-from pylsl import StreamInlet, resolve_stream
+from pylsl import StreamInlet, resolve_byprop
 import pyautogui
 import time  
 
 # resolve an EMG stream on the lab network and notify the user
 print("Looking for an EMG stream...")
-streams = resolve_stream('type', 'EMG')
+streams = resolve_byprop('type', 'EMG')
 inlet = StreamInlet(streams[0])
 print("EMG stream found!")
 
